@@ -1,0 +1,17 @@
+pipeline{
+    agent any
+
+    properties([
+	    buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '15')),])
+
+       String build_id=`wget http://jenkins.p2pcredit.local/job/job_name/lastSuccessfulBuild`
+
+    stages{
+        stage("init"){
+            echo "Hii ${params.name}"
+        }
+        stage("build"){
+            echo "build number is ${build_id}"
+        }
+    }
+}
